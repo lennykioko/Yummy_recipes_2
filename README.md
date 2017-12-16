@@ -49,6 +49,9 @@ Yummy recipes provides a platform for users to keep track of their awesome recip
 * Bootstrap: http://getbootstrap.css
 * Python 3.6.2 (PEP8)
 
+## Github pages link
+* https://lennykioko.github.io/
+
 
 ## Heroku link
 * 
@@ -57,6 +60,7 @@ Yummy recipes provides a platform for users to keep track of their awesome recip
 Lenny Kioko.
 
 ## Acknowledgment
+All the wonderful people who have supported me along the way...thank you.
 
 
 ### Testing
