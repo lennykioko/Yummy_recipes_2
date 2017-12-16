@@ -3,4 +3,3 @@ node_modules
 .travis.yml
 gulpfile.js
 package.json
-vendor/
