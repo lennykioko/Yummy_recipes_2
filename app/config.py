@@ -1,3 +1,5 @@
+"""contains settings for the flask application"""
+
 # Enable debug mode.
 DEBUG = True
 

@@ -3,7 +3,6 @@
 {% block title %}recipes{% endblock %}
 
 {% block style %}
-
     <style>
       body {
         padding-top: 54px;
@@ -45,11 +44,11 @@
 
 
   {% block content %}
-    <br><br>
     <!-- Page Content -->
+    <br>
     <div class="container">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  
+          <h4 style="color:#0069d9;;"><small>Welcome, {{ username }}</small></h4><br>
         <a class="btn btn-primary btn-lg" href="/add_recipe" role="button">Add New Recipe</a><br><br>
 
         <div class="card" style="padding:20px;">
@@ -60,6 +59,5 @@
             <a href="/edit_recipe" class="card-link">Edit</a>
             <a href="/delete_recipe" class="card-link">Delete</a>
           </div>
-        </div><br>
-
+        </div><br> 
   {% endblock %}
