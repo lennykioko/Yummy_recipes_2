@@ -1,13 +1,13 @@
 """contains the backend logic of the flask app"""
 
-from flask import Flask, render_template, request, redirect, session, url_for, g
+from flask import Flask, render_template, request, redirect, session, url_for
 
 app = Flask(__name__)
-app.config.from_object('config')  #loads configuration settings from config.py
+app.config['SECRET_KEY'] = "63jHZ6MIur"
 
 @app.route('/')
 def home():
-    """renders the hoome page"""
+    """renders the home page"""
     return render_template('index.html')
 
 
@@ -15,31 +15,6 @@ def home():
 def about():
     """renders the about page"""
     return render_template('about.html')
-
-
-@app.before_request
-def before_request():
-    """handles user data and runs before each request"""
-    g.username = None
-    g.email = None
-    g.password = None
-    g.confirm_password = None
-
-    if 'username' in session:
-        g.username = session['username']
-        g.email = session['email']
-        g.password = session['password']
-        g.confirm_password = session['confirm_password']
-
-    g.title = None
-    g.category = None
-    g.description = None
-
-    if 'title' in session:
-        g.title = session['title']
-        g.category = session['category']
-        g.description = session['description']
-
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -59,11 +34,8 @@ def register():
 def login():
     """renders the login form and handles user input for logging in"""
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        if email == g.email:
-            if password == g.password:
-                return redirect(url_for('recipes'))
+        if 'email' in session:
+            return redirect(url_for('recipes'))
 
     return render_template('login.html')
 
@@ -97,26 +69,16 @@ def add_recipe():
 @app.route('/recipes', methods=['GET', 'POST'])
 def recipes():
     """renders the recipes page displaying saved recipes"""
-    title = g.title
-    category = g.category
-    description = g.description
-    username = g.username
 
-    email = g.email
-    message = """You need to be logged in to add recipes,
-              Kindly create an account if you haven't already."""
-
-    if email is None:
-
-        if title is None:
-            title = 'Title'
-            category = 'Category'
-            description = 'Description'
+    if 'title' in session:
+        title = session['title']
+        category = session['category']
+        description = session['description']
 
         return render_template('recipes.html', title=title, category=category,
-                               description=description, username=username)
+                                description=description)
 
-    return render_template('register.html', message=message)
+    return render_template('recipes.html')
 
 @app.route('/delete_recipe')
 def delete_recipe():
@@ -130,13 +92,17 @@ def delete_recipe():
 @app.route('/edit_recipe', methods=['GET', 'POST'])
 def edit_recipe():
     """edits an already saved recipe"""
-    title = g.title
-    category = g.category
-    description = g.description
 
-    return render_template('add_recipe.html', title=title, category=category,
-                           description=description)
+    if 'title' in session:
+        title = session['title']
+        category = session['category']
+        description = session['description']
+
+        return render_template('add_recipe.html', title=title, category=category,
+                                description=description)
+  
+    return redirect(url_for('add_recipe'))
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
