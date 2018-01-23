@@ -76,7 +76,7 @@ def recipes():
         description = session['description']
 
         return render_template('recipes.html', title=title, category=category,
-                                description=description)
+                               description=description)
 
     return render_template('recipes.html')
 
@@ -99,8 +99,8 @@ def edit_recipe():
         description = session['description']
 
         return render_template('add_recipe.html', title=title, category=category,
-                                description=description)
-  
+                               description=description)
+
     return redirect(url_for('add_recipe'))
 
 
