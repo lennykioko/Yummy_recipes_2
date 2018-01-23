@@ -19,10 +19,31 @@ class MemberTestCase(unittest.TestCase):
                                             'secretive', 'secretive')
         self.assertEqual(result, 'Successful Registration', msg='Invalid registration credentials')
 
-    def test_empty_field(self):
-        """tests for any missing field during registration"""
+    def test_empty_username_field(self):
+        """tests for missing username field during registration"""
         result = self.myMembership.register('', 'lennykmutua@gmail.com',
                                             'secretive', 'secretive')
+        self.assertEqual(result, 'Kindly fill in all fields',
+                         msg='Invalid registration credentials')
+
+    def test_empty_email_email_field(self):
+        """tests for missing email field during registration"""
+        result = self.myMembership.register('lenny', '',
+                                            'secretive', 'secretive')
+        self.assertEqual(result, 'Kindly fill in all fields',
+                         msg='Invalid registration credentials')
+
+    def test_empty_password_field(self):
+        """tests for missing password field during registration"""
+        result = self.myMembership.register('lenny', 'lennykmutua@gmail.com',
+                                            '', 'secretive')
+        self.assertEqual(result, 'Kindly fill in all fields',
+                         msg='Invalid registration credentials')
+                   
+    def test_empty_cfpassword_field(self):
+        """tests for missing confirm_password field during registration"""
+        result = self.myMembership.register('lenny', 'lennykmutua@gmail.com',
+                                            'secretive', '')
         self.assertEqual(result, 'Kindly fill in all fields',
                          msg='Invalid registration credentials')
 
