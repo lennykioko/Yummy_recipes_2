@@ -6,8 +6,12 @@ python:
 install:
   - "pip install -r requirements.txt"
   - pip install coveralls
+  - pip install coverage
 script:
-  - "pytest"
+  - "python test_member.py"
+  - "python test_recipe.py"
+  - "coverage run test_member.py"
+  - "coverage run test_recipe.py"
 after_success:
   - coveralls
 notifications:
