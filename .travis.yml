@@ -8,11 +8,12 @@ install:
   - pip install coveralls
   - pip install coverage
 script:
-  - "python test_member.py"
-  - "python test_recipe.py"
-  - "coverage run test_member.py"
-  - "coverage run test_recipe.py"
+  - "python tests/test_member.py"
+  - "python tests/test_recipe.py"
+  - "coverage run tests/test_member.py"
+  - "coverage run tests/test_recipe.py"
 after_success:
   - coveralls
 notifications:
   email: false
+  

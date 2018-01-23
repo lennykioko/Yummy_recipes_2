@@ -1,6 +1,6 @@
-env/
+env
 node_modules
 gulpfile.js
 package.json
-.vscode/
-__pycache__/
+.vscode
+__pycache__
