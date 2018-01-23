@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}add_recipe{% endblock %}
+
+{% block style %}
+    <!-- Custom styles for this template -->
+    <style>
+      body {
+        padding-top: 54px;
+        background: rgb(195, 229, 231)
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+
+      }
+     
+      .whitebg{
+        background-color: #ffffff;
+        padding: 10px;
+        margin:4px 0 0 10px;
+        border-radius: 15px;
+      }
+
+    </style>
+    {% endblock %}
+
+    {% block body_tag %}
+    <body>
+    {% endblock %}
+
+    {% block navbar_active %}
+    <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/recipes">My Recipes</a>
+        </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    {% endblock %}
+
+
+    {% block content %}
+    <div class="container">
+      <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <br><br>                                            
+                <form class="form-horizontal whitebg" action="{{ url_for('add_recipe') }}" method="post">
+                    <h2>My Recipe</h2>
+                    <div class="form-group">
+                        <label class="control-label align-content-around" for="title">Recipe Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required
+                        value="{{ title }}">
+                    </div>
+                       
+                    <div class="form-group">
+                        <label class="control-label align-content-around" for="category">Recipe Category</label>                                
+                        <input type="text" class="form-control" id="category" name="category" required
+                        value="{{ category }}">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="text-heading">Recipe Description</label>
+                      <textarea class="form-control" id="description" name ="description" rows="20" required
+                      > {{ description }} </textarea>
+                    </div>
+    
+                    <div class="form-group text-center">
+                        <button class="btn btn-info btn-block" type="submit">Save</button>  
+                    </div>
+                </form>
+         
+        </div>
+      </div>
+    </div>
+    {% endblock %}

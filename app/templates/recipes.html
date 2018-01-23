@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}recipes{% endblock %}
+
+{% block style %}
+    <style>
+      body {
+        padding-top: 54px;
+        background: rgb(195, 229, 231)
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+  
+    </style>
+  {% endblock %}
+
+  {% block body_tag %}
+  <body>
+  {% endblock %}
+
+  {% block navbar_active %}
+  <li class="nav-item">
+      <a class="nav-link" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/about">About</a>
+  </li>
+  <li class="nav-item active">
+      <a class="nav-link" href="/recipes">My Recipes</a>
+      </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/register">Register</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/login">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/logout">Logout</a>
+  </li>
+  {% endblock %}
+
+
+  {% block content %}
+    <!-- Page Content -->
+    <br>
+    <div class="container">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4 style="color:#0069d9;;"><small>Welcome, {{ username }}</small></h4><br>
+        <a class="btn btn-primary btn-lg" href="/add_recipe" role="button">Add New Recipe</a><br><br>
+
+        <div class="card" style="padding:20px;">
+          <div class="card-block">
+            <h4 class="card-title">{{ title }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">{{ category }}</h6>
+            <p class="card-text">{{ description }}</p>
+            <a href="/edit_recipe" class="card-link">Edit</a>
+            <a href="/delete_recipe" class="card-link">Delete</a>
+          </div>
+        </div><br> 
+  {% endblock %}
