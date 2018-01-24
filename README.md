@@ -35,7 +35,7 @@ Yummy recipes provides a platform for users to keep track of their awesome recip
   $ python app.py
   ```
 
-6. Navigate to [http://localhost:5000](http://localhost:5000)
+5. Navigate to [http://localhost:5000](http://localhost:5000)
 
 
 ## Features:
@@ -48,8 +48,9 @@ Yummy recipes provides a platform for users to keep track of their awesome recip
 ## Built With
 * HTML5
 * CSS3
-* Bootstrap: http://getbootstrap.css
-* Python 3.6.2 (PEP8)
+* JavaScript
+* Bootstrap
+* Python 3.6.4 (PEP8)
 
 ## Github pages link
 * https://lennykioko.github.io/
