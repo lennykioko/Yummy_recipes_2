@@ -16,9 +16,13 @@ class RecipeTestCase(unittest.TestCase):
         """tests a successful recipe addition"""
         result = self.myrecipe.new_recipe('fried beans', 'dinner',
                                           'fry beans in hot oil for an hour')
-        self.assertEqual(result, 'Successfully created new recipe', msg='Invalid recipe data')
+        self.assertEqual('Successfully created new recipe', result)
 
     def test_empty_field(self):
         """tests for any missing field"""
         result = self.myrecipe.new_recipe('fried beans', '', 'fry beans in hot oil for an hour')
-        self.assertEqual(result, 'Kindly fill in all fields', msg='Empty field')
+        self.assertEqual('Kindly fill in all fields', result)
+
+    def test_setup(self):
+        """test the setUp method"""
+        self.assertEqual(self.myrecipe, Recipe())
