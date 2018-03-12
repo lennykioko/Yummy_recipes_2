@@ -30,7 +30,7 @@ class User(object):
 
 
     def login(self, email='', password=''):
-        """verify login credentials loginthe user"""
+        """verify login credentials login the user"""
         global all_users
         if email != '' and password != '':
             if re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
@@ -42,3 +42,13 @@ class User(object):
                 return "Email does not exists"
             return "Invalid Email"
         return "Please fill in both fields"
+
+    def recover(self, email='', username='', password='', confirm_password=''):
+        """recover an existing account after forgetting password"""
+        global all_users
+        if email != '' and username != '' and password != '' and confirm_password != '':
+            if password == confirm_password:
+                all_users[email] = [email, username, password, confirm_password]
+                return "Sucessfully recovered account"
+            return "Password not equal to confirm_password"
+        return "Please fill in all fields"

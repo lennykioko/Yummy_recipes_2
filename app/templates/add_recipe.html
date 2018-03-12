@@ -1,88 +1,97 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}add_recipe{% endblock %}
+  <head>
 
-{% block style %}
-    <!-- Custom styles for this template -->
-    <style>
-      body {
-        padding-top: 54px;
-        background: rgb(195, 229, 231)
-      }
-      @media (min-width: 992px) {
-        body {
-          padding-top: 56px;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      }
-     
-      .whitebg{
-        background-color: #ffffff;
-        padding: 10px;
-        margin:4px 0 0 10px;
-        border-radius: 15px;
-      }
+    <title>Add_recipe</title>
 
-    </style>
-    {% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    {% block body_tag %}
-    <body>
-    {% endblock %}
+    <!-- Custom styles  -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
 
-    {% block navbar_active %}
-    <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/recipes">My Recipes</a>
-        </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-    </li>
-    {% endblock %}
+  </head>
 
+  <body class="bg-image">
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index">Yummy Recipes</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/recipes">My Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/signup">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>    
 
-    {% block content %}
+    <!-- Page Content -->
     <div class="container">
-      <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <br><br>                                            
-                <form class="form-horizontal whitebg" action="{{ url_for('add_recipe') }}" method="post">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br><br>                                            
+                <form class="form-horizontal" action="{{ url_for('add_recipe') }}" method="POST">
+                    {% if message %}<p style="color:red;" class=error><strong>Error: {{ message }}</strong>{% endif %}
                     <h2>My Recipe</h2>
                     <div class="form-group">
                         <label class="control-label align-content-around" for="title">Recipe Title</label>
-                        <input type="text" class="form-control" id="title" name="title" required
-                        value="{{ title }}">
+                        <input type="text" class="form-control" id="title" name="title" {% if title %} value="{{ title }}" {% endif %} required>
                     </div>
                        
                     <div class="form-group">
                         <label class="control-label align-content-around" for="category">Recipe Category</label>                                
-                        <input type="text" class="form-control" id="category" name="category" required
-                        value="{{ category }}">
+                        <input type="text" class="form-control" id="category" name="category" {% if category %} value="{{ category }}" {% endif %} required>
                     </div>
 
                     <div class="form-group">
                       <label class="text-heading">Recipe Description</label>
-                      <textarea class="form-control" id="description" name ="description" rows="20" required
-                      > {{ description }} </textarea>
+                      <textarea class="form-control" id="description" name ="description" rows="20" required>
+                        {% if description %} {{ description }} {% endif %} 
+                      </textarea>
                     </div>
     
                     <div class="form-group text-center">
-                        <button class="btn btn-info btn-block" type="submit">Save</button>  
+                        <button class="btn btn-info btn-block" type="submit">Save Recipe</button>  
                     </div>
                 </form>
-         
+            </div>
         </div>
-      </div>
-    </div>
-    {% endblock %}
+    </div><br>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Yummy Recipes 2018</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  </body>
+
+</html>

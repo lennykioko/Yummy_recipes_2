@@ -81,6 +81,21 @@ class UserTests(unittest.TestCase):
         """test for login using an invalid password"""
         login = self.user.login('lennykioko@gmail.com', 'mysecret233')
         self.assertEqual(login, "Invalid password")
+
+    def test_successful_recovery(self):
+        """test for successful account recovery"""
+        recover = self.user.recover('lennykmutua@gmail.com', 'lenny', 'mysecrettwo', 'mysecrettwo')
+        self.assertEqual(recover, "Sucessfully recovered account")
+
+    def test_empty_recovery_field(self):
+        """test for empty field in account recovery"""
+        recover = self.user.recover('lennykmutua@gmail.com', '', 'mysecrettwo', 'mysecrettwo')
+        self.assertEqual(recover, "Please fill in all fields")
+
+    def test_wrong_confirm_password_recovery(self):
+        """test for confirm password that is different from password during account recovery"""
+        recover = self.user.recover('lennykmutua@gmail.com', 'lenny', 'mysecrettwo', 'mysecretthree')
+        self.assertEqual(recover, "Password not equal to confirm_password")
   
 
 if __name__ == '__main__':

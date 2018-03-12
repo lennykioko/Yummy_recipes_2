@@ -3,7 +3,7 @@ Created: 2018
 Author: Lenny
 """
 
-recipes = {}
+all_recipes = {}
 
 
 class Recipe(object):
@@ -12,26 +12,30 @@ class Recipe(object):
 
     def create(self, title='', category='', description=''):
         """create a new recipe"""
-        global recipes
+        global all_recipes
         if title != '' and category != '' and description != '':
-            recipes[title] = [title, category, description]
-            return "Recipe created succesfully"
+            if title not in all_recipes:
+                all_recipes[title] = [title, category, description]
+                return "Recipe created succesfully"
+            return "Title already exists"
         return "Please fill in all fields"
     
     def update(self, title='', category='', description=''):
         """update an existing recipe"""
-        global recipes
+        global all_recipes
         if title != '' and category != '' and description != '':
-            recipes[title] = [title, category, description]
-            return "Sucessfully updated"
+            if title in all_recipes:
+                all_recipes[title] = [title, category, description]
+                return "Sucessfully updated"
+            return "Recipe does not exist"
         return "Please fill in all fields"
     
-    def delete(self, title='', category='', description=''):
+    def delete(self, title=''):
         """delete an existing recipe"""
-        global recipes
-        if title != '' and category != '' and description != '':
+        global all_recipes
+        if title != '':
             try:
-                del recipes[title]
+                del all_recipes[title]
                 return "Successfully deleted"
             except KeyError:
                 return "Recipe does not exist"
