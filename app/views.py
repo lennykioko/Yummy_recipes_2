@@ -112,7 +112,8 @@ def recipes():
 def edit_recipe(title='', category='', description=''):
     """edit an already saved recipe"""
     recipe.delete(title)
-    return render_template('add_recipe.html', title=title, category=category, description=description)
+    context = {"title" : title, "category" : category, "description" : description}
+    return render_template('add_recipe.html', **context)
 
 @app.route('/delete_recipe/<title>')
 def delete_recipe(title=''):
